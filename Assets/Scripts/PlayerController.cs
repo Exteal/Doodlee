@@ -9,9 +9,16 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D doodle;
     private int speed;
+
     private float dire;
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    private float facingDire;
+
+
+    private Animator bodyAnimator;
+    private Animator mouthAnimator;
+
+    private SpriteRenderer bodySprite;
+
 
 
     void Start()
@@ -19,8 +26,10 @@ public class PlayerController : MonoBehaviour
         doodle = GetComponent<Rigidbody2D>();
         speed = 3;
         dire = 0;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        
+        bodySprite = transform.Find("Body").GetComponent<SpriteRenderer>();
+        bodyAnimator = transform.Find("Body").GetComponent<Animator>();
+        mouthAnimator = transform.Find("Mouth").GetComponent<Animator>();
         
     }
 
@@ -28,19 +37,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         doodle.transform.Translate(new Vector2(dire, 0) * speed * Time.deltaTime);
-        spriteRenderer.flipX = dire == -1;
+        bodySprite.flipX = facingDire == -1;
+        
+        Debug.Log(mouthAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     void OnShoot()
     {
-        animator.Play("Shoot");
-
+        bodyAnimator.Play("Shoot");
+        mouthAnimator.Play("Shooting");
     }
 
     void OnMove(InputValue inputValue)
     {
         var moveVal = inputValue.Get<float>();
-        dire = moveVal;
-        
+        facingDire = moveVal != 0 ? moveVal : facingDire;
+        dire = moveVal;        
     }
 }
