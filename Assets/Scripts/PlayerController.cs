@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         doodle.transform.Translate(new Vector2(dire, 0) * speed * Time.deltaTime);
         bodySprite.flipX = facingDire == -1;
         
-        Debug.Log(mouthAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        //Debug.Log(mouthAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
 
     void OnShoot()
