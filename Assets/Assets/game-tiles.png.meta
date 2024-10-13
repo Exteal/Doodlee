@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_11
+      name: black_hole
       rect:
         serializedVersion: 2
         x: 228
@@ -740,7 +740,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_30
+      name: sprin_1
       rect:
         serializedVersion: 2
         x: 404
@@ -1118,11 +1118,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_48
+      name: spring_2
       rect:
         serializedVersion: 2
         x: 404
-        y: 369
+        y: 370
         width: 18
         height: 28
       alignment: 0
@@ -2819,7 +2819,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_130
+      name: finish_bg
       rect:
         serializedVersion: 2
         x: 579
@@ -4698,11 +4698,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      black_hole: -570880594
       blue: 191888626
       brown_1: -1080270496
       brown_2: -1897450095
       brown_3: -1145717465
       brown_4: -952862497
+      finish_bg: -2040830871
       game-tiles_1: 776234796
       game-tiles_10: 159033451
       game-tiles_100: 424202406
@@ -4715,7 +4717,6 @@ TextureImporter:
       game-tiles_107: -1031770807
       game-tiles_108: 1806951205
       game-tiles_109: 586974654
-      game-tiles_11: -570880594
       game-tiles_110: 180713793
       game-tiles_111: 513010571
       game-tiles_112: 478652024
@@ -4738,7 +4739,6 @@ TextureImporter:
       game-tiles_128: -1770377303
       game-tiles_129: 547320183
       game-tiles_13: -574905836
-      game-tiles_130: -2040830871
       game-tiles_131: -824265640
       game-tiles_132: -1735539419
       game-tiles_133: -1273702444
@@ -4842,7 +4842,6 @@ TextureImporter:
       game-tiles_28: 1573163735
       game-tiles_29: -1872663665
       game-tiles_3: -1770069010
-      game-tiles_30: 799154394
       game-tiles_32: 1819686618
       game-tiles_33: 2003364072
       game-tiles_34: -1553518455
@@ -4860,7 +4859,6 @@ TextureImporter:
       game-tiles_45: -287370580
       game-tiles_46: 359521297
       game-tiles_47: 226793792
-      game-tiles_48: -1122795664
       game-tiles_49: 682372783
       game-tiles_5: 2134581639
       game-tiles_51: -285700246
@@ -4916,6 +4914,8 @@ TextureImporter:
       game-tiles_98: -35124761
       game-tiles_99: -527169783
       green: 628234967
+      sprin_1: 799154394
+      spring_2: -1122795664
       white: 600006263
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

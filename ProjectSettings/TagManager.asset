@@ -9,6 +9,8 @@ TagManager:
   - brown_platform
   - left_wall
   - right_wall
+  - spring
+  - bonus
   layers:
   - Default
   - TransparentFX
@@ -45,4 +47,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 2454978171
+    locked: 0
+  - name: Front
+    uniqueID: 1746036457
     locked: 0

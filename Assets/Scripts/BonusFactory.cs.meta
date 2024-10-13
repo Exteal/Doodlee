@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 4466748043013c2419a40e3d6c178f33
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - springPrefab: {fileID: 8371027561978949542, guid: f1c80b19ac198d043bc81fc377b1c01c, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
