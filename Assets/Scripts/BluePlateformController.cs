@@ -9,11 +9,12 @@ public class BluePlateformController : MonoBehaviour
     private Rigidbody2D platform;
     private int direction = 1;
     private int speed = 1;
-    private float bound = 8.33f;
+    private float bound = 3.7f;
 
     void Start()
     {
         platform = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
