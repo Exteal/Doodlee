@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +20,9 @@ public class PlayerController : MonoBehaviour
     private Animator mouthAnimator;
 
     private SpriteRenderer bodySprite;
-
+    private float highest;
+    private float starting;
+    public TextMeshProUGUI score;
 
 
     void Start()
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
         doodle = GetComponent<Rigidbody2D>();
         speed = 3;
         dire = 0;
+        highest = 0;
+        starting = transform.position.y;
         
         bodySprite = transform.Find("Body").GetComponent<SpriteRenderer>();
         bodyAnimator = transform.Find("Body").GetComponent<Animator>();
@@ -38,6 +44,9 @@ public class PlayerController : MonoBehaviour
     {
         doodle.transform.Translate(new Vector2(dire, 0) * speed * Time.deltaTime);
         bodySprite.flipX = facingDire == -1;
+        highest = math.max(highest, transform.position.y - starting);
+
+        score.text = highest.ToString();
         
         //Debug.Log(mouthAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
     }
