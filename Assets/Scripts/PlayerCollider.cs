@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCollider : MonoBehaviour
 {
     private int jumpForce;    
-    Rigidbody2D doodle;
+    private Rigidbody2D doodle;
     private Animator animator;
     private Animator equipAnimator;
+    private EndingsManager endingsManager;
+    public GameObject gameManager;
+
     void Start()
     {
         doodle  = GetComponent<Rigidbody2D>();
         jumpForce = 8;
         animator = transform.Find("Body").GetComponent<Animator>();
         equipAnimator = transform.Find("Equip").GetComponent <Animator>();
+        endingsManager = gameManager.GetComponent<EndingsManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,9 +47,12 @@ public class PlayerCollider : MonoBehaviour
                 collision.gameObject.SendMessage("Break");        
             }
 
-            if (collision.CompareTag("bonus") && DoodleIsOnTop(collision))
+            if (collision.CompareTag("bonus"))
             {
 
+                if ( collision.GetComponent<Bonus>().topUseOnly && !DoodleIsOnTop(collision)) {
+                    return;
+                }
 
                 Bonus bonus = collision.gameObject.GetComponent<Bonus>(); ;
                 Animator animator = collision.gameObject.GetComponent<Animator>();
@@ -85,11 +93,19 @@ public class PlayerCollider : MonoBehaviour
                 }
                     
                 DoodleJump(modifier: bonus.ComputeJumpPower());
-                    
-                
+                       
                 
             }
            
+            if (collision.CompareTag("black_hole"))
+            {
+                endingsManager.FreeFall();
+            }
+
+            if (collision.CompareTag("enemy"))
+            {
+                endingsManager.FreeFall();
+            }
         }
             
     }
@@ -110,6 +126,7 @@ public class PlayerCollider : MonoBehaviour
         doodle.AddForce(new Vector2(0, jumpForce * modifier), ForceMode2D.Impulse);
         animator.Play("Jump");      
     }
+  
 }
 
 

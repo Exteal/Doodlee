@@ -4,13 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformBonusInitializer : MonoBehaviour
-{
-    
-    //public GameObject gameManager;
-   
-    
-   
-    
+{    
     void Start()
     {
         

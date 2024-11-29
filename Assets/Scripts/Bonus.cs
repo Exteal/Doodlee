@@ -6,6 +6,9 @@ public abstract class Bonus : MonoBehaviour
 {
 
 
+
+    public bool topUseOnly { get; set; }
+
     public float modifier;   
     public bool isOneShot { get; set; }
     public abstract bool HasEquipAnimation();

@@ -8,9 +8,9 @@ public class Spring : Bonus
 {
 
     public Spring() {
-        //pathToPrefab = "Prefabs/Spring";
-        modifier = 1.3f;
+        modifier = 1.5f;
         isOneShot = false;
+        topUseOnly = true;
     }
 
     public override RuntimeAnimatorController EquipAnimation()

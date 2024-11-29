@@ -11,6 +11,9 @@ TagManager:
   - right_wall
   - spring
   - bonus
+  - enemy
+  - black_hole
+  - cap
   layers:
   - Default
   - TransparentFX

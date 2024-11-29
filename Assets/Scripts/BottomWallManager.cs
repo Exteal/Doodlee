@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BottomWallManager : MonoBehaviour
 {
-    
-    public Camera mainCamera;
-    public Canvas endUI;
 
-    private void Start()
+    public GameObject gameManager;
+    private EndingsManager endManager;
+
+    public void Start()
     {
-        endUI.enabled = false;
+        endManager = gameManager.GetComponent<EndingsManager>();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != null)
@@ -22,17 +23,9 @@ public class BottomWallManager : MonoBehaviour
                 return;
             }
 
-            //SceneManager.LoadScene("EndScreen");
-            HandleEnd();
+            endManager.FellOff();
 
         }
     }
 
-
-    private void HandleEnd()
-    {
-        //Vector3 currentPos = mainCamera.transform.position;
-        mainCamera.transform.Translate(new Vector2(0, -10));// Vector3.MoveTowards(currentPos, new Vector2(currentPos.x, currentPos.y  - 10), 25);
-        endUI.enabled = !(endUI.enabled);
-    }
 }

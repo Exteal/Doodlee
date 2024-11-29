@@ -7,5 +7,5 @@ using UnityEngine;
 public abstract class BonusFactory : MonoBehaviour
 {
     public abstract GameObject ReturnBonus();
-
+    
 }

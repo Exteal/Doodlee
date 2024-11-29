@@ -7,9 +7,9 @@ public class Cap : Bonus
     
     public Cap() 
     {
-        //pathToPrefab = "Prefabs/Cap";
-        modifier = 1.5f;
+        modifier = 4f;
         isOneShot = true;
+        topUseOnly = false;
     }
     public override RuntimeAnimatorController EquipAnimation()
     {

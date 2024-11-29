@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_1
+      name: butter1
       rect:
         serializedVersion: 2
         x: 68
@@ -677,7 +677,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_27
+      name: butter2
       rect:
         serializedVersion: 2
         x: 67
@@ -1769,7 +1769,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_80
+      name: feets
       rect:
         serializedVersion: 2
         x: 337
@@ -1832,7 +1832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_83
+      name: cyclops
       rect:
         serializedVersion: 2
         x: 65
@@ -3575,7 +3575,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_166
+      name: butter3
       rect:
         serializedVersion: 2
         x: 2
@@ -3596,7 +3596,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_167
+      name: butter4
       rect:
         serializedVersion: 2
         x: 63
@@ -3617,7 +3617,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: game-tiles_168
+      name: butter5
       rect:
         serializedVersion: 2
         x: 131
@@ -4704,8 +4704,14 @@ TextureImporter:
       brown_2: -1897450095
       brown_3: -1145717465
       brown_4: -952862497
+      butter1: 776234796
+      butter2: -464433132
+      butter3: 456603725
+      butter4: 933570706
+      butter5: 1179569505
+      cyclops: 560438308
+      feets: -169814975
       finish_bg: -2040830871
-      game-tiles_1: 776234796
       game-tiles_10: 159033451
       game-tiles_100: 424202406
       game-tiles_101: 709311253
@@ -4776,9 +4782,6 @@ TextureImporter:
       game-tiles_163: 336039673
       game-tiles_164: 1117012353
       game-tiles_165: -1886124089
-      game-tiles_166: 456603725
-      game-tiles_167: 933570706
-      game-tiles_168: 1179569505
       game-tiles_169: 52108421
       game-tiles_170: 1975461191
       game-tiles_171: 540661150
@@ -4838,7 +4841,6 @@ TextureImporter:
       game-tiles_23: 547879622
       game-tiles_24: 1350817853
       game-tiles_25: -721365949
-      game-tiles_27: -464433132
       game-tiles_28: 1573163735
       game-tiles_29: -1872663665
       game-tiles_3: -1770069010
@@ -4892,10 +4894,8 @@ TextureImporter:
       game-tiles_77: -1198079460
       game-tiles_78: 657354667
       game-tiles_79: 955694490
-      game-tiles_80: -169814975
       game-tiles_81: 568939291
       game-tiles_82: -249257644
-      game-tiles_83: 560438308
       game-tiles_84: 2019021110
       game-tiles_85: -852340103
       game-tiles_86: 481277301

@@ -26,13 +26,13 @@ public class PlayerController : MonoBehaviour
 
 
     void Start()
-    {
-        doodle = GetComponent<Rigidbody2D>();
+    {        
         speed = 3;
         dire = 0;
         highest = 0;
         starting = transform.position.y;
-        
+
+        doodle = GetComponent<Rigidbody2D>();
         bodySprite = transform.Find("Body").GetComponent<SpriteRenderer>();
         bodyAnimator = transform.Find("Body").GetComponent<Animator>();
         mouthAnimator = transform.Find("Mouth").GetComponent<Animator>();
@@ -45,10 +45,15 @@ public class PlayerController : MonoBehaviour
         doodle.transform.Translate(new Vector2(dire, 0) * speed * Time.deltaTime);
         bodySprite.flipX = facingDire == -1;
         highest = math.max(highest, transform.position.y - starting);
+        DisplayScore();
 
-        score.text = highest.ToString();
-        
         //Debug.Log(mouthAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+    }
+
+    private void DisplayScore()
+    {
+        float displayed = math.round(highest) * 100;
+        score.text = displayed.ToString();
     }
 
     void OnShoot()
@@ -62,5 +67,10 @@ public class PlayerController : MonoBehaviour
         var moveVal = inputValue.Get<float>();
         facingDire = moveVal != 0 ? moveVal : facingDire;
         dire = moveVal;        
+    }
+
+    public float GetHighest()
+    {
+        return highest;
     }
 }
