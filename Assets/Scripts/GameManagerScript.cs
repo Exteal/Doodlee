@@ -1,117 +1,75 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-
-    private BonusFactory springFactory;
-    private BonusFactory capFactory;
 
     private PlatformFactory platformFactory;
 
     public GameObject doodle;
     public GameObject cam;
 
-    public GameObject[] walls;
+    public GameObject[] movableObjects;
 
     private PlayerController controller;
 
     private EnemyFactory enemyFactory;
 
-    private float lastGenPoint;
+    private float lastGeneratedPlateformPoint;
+
+    private float lastGeneratedEnemyPoint;
 
 
-    
     void Start()
     {
 
-        springFactory = GetComponent<SpringFactory>();
-        capFactory = GetComponent<CapFactory>();
-
         controller = doodle.GetComponent<PlayerController>();
         platformFactory = GetComponent<PlatformFactory>();
-        enemyFactory = doodle.GetComponent<EnemyFactory>();
+        enemyFactory = GetComponent<EnemyFactory>();
 
-        lastGenPoint = 0;
+        lastGeneratedPlateformPoint = 0;
+        lastGeneratedEnemyPoint = 0;
 
         CreateInitPlateforms();
 
-    }
-
-    public bool hasBonus()
-    {
-        return UnityEngine.Random.Range(0, 101) < 10;
-    }
-
-    public GameObject selectBonus()
-    {
-        var rd = UnityEngine.Random.Range(0, 101);
-
-        BonusFactory factory = null;
-
-        switch(rd)
-        {
-            case var _ when rd <= 50:
-
-                factory = springFactory;
-                break;
-
-            case var _ when rd <= 100:
-                factory = capFactory;
-                break;
-            
-            default:
-                break;
-        }
-
-        return factory.ReturnBonus();
-    }
-
+    }    
     private void Update()
     {
         MoveObjects();
         CreatePlateforms();
+        CreateEnemy();
     }
 
-    
-    
     private void CreateInitPlateforms()
     {
-
         var pos = doodle.transform.position;
+        
         var limit = platformFactory.ahead;
         var inters = platformFactory.interst;
         
-
-
-        platformFactory.CreatePlateform(pos, -1.2f);
+        platformFactory.CreatePlateform(pos, -1.2f, PlateformGenerator.SolidOnly);
 
       
         for (float i = (float)Math.Floor(pos.y) ; i < limit ;  i = i+inters)
         {
             if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
             {
-                var x = UnityEngine.Random.Range(-3.7f, 3.7f);
-                platformFactory.CreatePlateform(new Vector2(x, i));
+                platformFactory.CreatePlateform(new Vector2(UnityEngine.Random.Range(-3.7f, 3.7f), i));
             }
         }
     }
     private void CreatePlateforms()
     {
         var highest = controller.GetHighest();
+        
         var ahead = platformFactory.ahead;
         var doodleHt = (int)Math.Floor(doodle.transform.position.y * 2) / 2;
 
 
-        if (doodleHt > lastGenPoint)
+        if (doodleHt > lastGeneratedPlateformPoint)
         {
-    
-            var creat = UnityEngine.Random.Range(0f, 1f) >= 0.5f;
           
-            if (creat)
+            if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
             {
 
                 var x = UnityEngine.Random.Range(-3.7f, 3.7f);
@@ -119,7 +77,7 @@ public class GameManagerScript : MonoBehaviour
                 
             }
 
-            lastGenPoint = doodleHt;
+            lastGeneratedPlateformPoint = doodleHt;
                  
         }
     }
@@ -127,12 +85,13 @@ public class GameManagerScript : MonoBehaviour
     private void CreateEnemy()
     {
         var highest = controller.GetHighest();
-        var ahead = platformFactory.ahead;
+        var ahead = enemyFactory.ahead;
+
         var doodleHt = (int)Math.Floor(doodle.transform.position.y * 2) / 2;
 
         var dist_between_enemies = 10;
 
-        if (doodleHt > lastGenPoint + dist_between_enemies)
+        if (doodleHt > lastGeneratedEnemyPoint + dist_between_enemies)
         {
 
             var creat = UnityEngine.Random.Range(0f, 1f) >= 0.1f;
@@ -143,7 +102,7 @@ public class GameManagerScript : MonoBehaviour
                 enemyFactory.CreateEnemy(new Vector2(x, doodleHt + ahead));
             }
 
-            lastGenPoint = doodleHt;
+            lastGeneratedEnemyPoint = doodleHt;
 
         }
 
@@ -159,9 +118,9 @@ public class GameManagerScript : MonoBehaviour
         }
 
         cam.transform.Translate(new Vector2(0, difference));
-        foreach (var wall in walls)
+        foreach (var obj in movableObjects)
         {
-            wall.transform.Translate(new Vector2(0, difference));
+            obj.transform.Translate(new Vector2(0, difference));
         }
     }
 }

@@ -54,7 +54,7 @@ public class PlayerCollider : MonoBehaviour
                     return;
                 }
 
-                Bonus bonus = collision.gameObject.GetComponent<Bonus>(); ;
+                Bonus bonus = collision.gameObject.GetComponent<Bonus>();
                 Animator animator = collision.gameObject.GetComponent<Animator>();
                 AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
 
@@ -89,7 +89,7 @@ public class PlayerCollider : MonoBehaviour
 
                 if (bonus.isOneShot)
                 {
-                    collision.gameObject.SetActive(false);
+                    Destroy(bonus);
                 }
                     
                 DoodleJump(modifier: bonus.ComputeJumpPower());

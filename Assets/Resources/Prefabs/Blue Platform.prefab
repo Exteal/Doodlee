@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -4693143547747963708}
   - component: {fileID: 6746676285212803830}
   - component: {fileID: 8408791245910114566}
+  - component: {fileID: 8129936079533880745}
+  - component: {fileID: 7841648388029519373}
   m_Layer: 0
   m_Name: Blue Platform
   m_TagString: blue_platform
@@ -281,3 +283,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6c10806d963704aa0713ca1746c049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8129936079533880745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622067719395500536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9421bdc97c9fdc42b96fb9f5dce9bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8371027561978949542, guid: f1c80b19ac198d043bc81fc377b1c01c, type: 3}
+--- !u!114 &7841648388029519373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622067719395500536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d321aeb8042512499d913082101769a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 7084322158117715621, guid: e31045417dff99143b5f796a407e2bc7, type: 3}

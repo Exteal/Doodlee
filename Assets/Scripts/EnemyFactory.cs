@@ -12,14 +12,13 @@ public class EnemyFactory : MonoBehaviour
     public int ahead;
     public GameObject[] prefabs;
     
-    private GameObject obstacles;
+    public GameObject obstacles;
     private Random random = new Random();
 
 
     void Start()
     {
         ahead = 30;
-        obstacles = transform.Find("obstacles").gameObject;
     }
 
     public void CreateEnemy(Vector2 pos, float yoffset = 0)
