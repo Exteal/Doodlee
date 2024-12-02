@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum PlateformGenerator
 {
     SolidOnly,
-    All
+    All,
+    GreenOnly
 }
 
 public class PlatformFactory : MonoBehaviour
@@ -22,7 +21,7 @@ public class PlatformFactory : MonoBehaviour
 
     void Start()
     {
-        ahead = 10;
+        ahead = 12;
     }
 
     private GameObject SolidOnlyGeneration()
@@ -30,11 +29,9 @@ public class PlatformFactory : MonoBehaviour
         var rd = Random.Range(0, 101);
         if (rd <= 25)
         {
-            return bluePrefab;
-            
+            return bluePrefab;     
         }
         return greenPrefab;
-
     }
 
     private GameObject AllPlateformsGeneration()
@@ -58,7 +55,6 @@ public class PlatformFactory : MonoBehaviour
     {
         GameObject prefab = null;
         
-
         switch (generator)
         {
             case PlateformGenerator.SolidOnly:
@@ -67,6 +63,10 @@ public class PlatformFactory : MonoBehaviour
             
             case PlateformGenerator.All:
                 prefab = AllPlateformsGeneration();
+                break;
+            
+            case PlateformGenerator.GreenOnly:
+                prefab = greenPrefab;
                 break;
 
         }

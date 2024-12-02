@@ -19,7 +19,7 @@ public class BottomWallManager : MonoBehaviour
         {
             if (!collision.CompareTag("Player"))
             {
-                collision.gameObject.SetActive(false);
+                Destroy(collision.gameObject);
                 return;
             }
 
@@ -27,5 +27,4 @@ public class BottomWallManager : MonoBehaviour
 
         }
     }
-
 }

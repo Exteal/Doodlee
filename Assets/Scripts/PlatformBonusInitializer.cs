@@ -27,8 +27,6 @@ public class PlatformBonusInitializer : MonoBehaviour
         }
 
     }
-
-
     public bool hasBonus()
     {
         return UnityEngine.Random.Range(0, 101) < 10;
@@ -52,6 +50,7 @@ public class PlatformBonusInitializer : MonoBehaviour
                 break;
             
             default:
+                factory = springFactory;
                 break;
         }
 

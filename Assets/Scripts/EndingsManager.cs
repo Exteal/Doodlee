@@ -7,6 +7,8 @@ public class EndingsManager : MonoBehaviour
 
     public Camera mainCamera;
     public Canvas endUI;
+    public GameObject bgEnd;
+
     public GameObject plateforms;
     public GameObject obstacles;
     public Rigidbody2D doodle;
@@ -21,6 +23,8 @@ public class EndingsManager : MonoBehaviour
     {
         mainCamera.transform.Translate(new Vector2(0, -10));
         endUI.enabled = !(endUI.enabled);
+
+        bgEnd.GetComponent<AudioSource>().Play();
 
         destroyElements();
 

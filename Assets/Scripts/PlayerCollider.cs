@@ -11,6 +11,7 @@ public class PlayerCollider : MonoBehaviour
     private Animator equipAnimator;
     private EndingsManager endingsManager;
     public GameObject gameManager;
+    public AudioClip bonkSound;
 
     void Start()
     {
@@ -50,18 +51,22 @@ public class PlayerCollider : MonoBehaviour
             if (collision.CompareTag("bonus"))
             {
 
-                if ( collision.GetComponent<Bonus>().topUseOnly && !DoodleIsOnTop(collision)) {
-                    return;
-                }
-
                 Bonus bonus = collision.gameObject.GetComponent<Bonus>();
-                Animator animator = collision.gameObject.GetComponent<Animator>();
-                AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
 
                 if (bonus == null)
                 {
                     return;
                 }
+
+                if ( collision.GetComponent<Bonus>().topUseOnly && !DoodleIsOnTop(collision)) {
+                    return;
+                }
+
+                
+                Animator animator = collision.gameObject.GetComponent<Animator>();
+                AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
+
+                
 
                 if (bonus.HasEquipAnimation())
                 {
@@ -89,12 +94,11 @@ public class PlayerCollider : MonoBehaviour
 
                 if (bonus.isOneShot)
                 {
-                    Destroy(bonus);
+                    Destroy(bonus.gameObject);
                 }
                     
                 DoodleJump(modifier: bonus.ComputeJumpPower());
-                       
-                
+                                      
             }
            
             if (collision.CompareTag("black_hole"))
@@ -105,6 +109,9 @@ public class PlayerCollider : MonoBehaviour
             if (collision.CompareTag("enemy"))
             {
                 endingsManager.FreeFall();
+                var player = collision.GetComponent<AudioSource>();
+                player.clip = bonkSound;
+                player.Play();
             }
         }
             
@@ -112,7 +119,7 @@ public class PlayerCollider : MonoBehaviour
 
     private bool DoodleIsUnder(Collider2D other)
     {
-        return doodle.transform.position.y < other.transform.position.y;
+        return doodle.transform.position.y <= other.transform.position.y;
     }
 
     private bool DoodleIsOnTop(Collider2D other)

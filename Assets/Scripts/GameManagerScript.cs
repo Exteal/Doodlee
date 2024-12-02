@@ -19,6 +19,9 @@ public class GameManagerScript : MonoBehaviour
 
     private float lastGeneratedEnemyPoint;
 
+    private float bound = 2.6f;
+
+
 
     void Start()
     {
@@ -27,8 +30,8 @@ public class GameManagerScript : MonoBehaviour
         platformFactory = GetComponent<PlatformFactory>();
         enemyFactory = GetComponent<EnemyFactory>();
 
-        lastGeneratedPlateformPoint = 0;
-        lastGeneratedEnemyPoint = 0;
+        lastGeneratedPlateformPoint = doodle.transform.position.y;
+        lastGeneratedEnemyPoint = doodle.transform.position.y;
 
         CreateInitPlateforms();
 
@@ -36,7 +39,7 @@ public class GameManagerScript : MonoBehaviour
     private void Update()
     {
         MoveObjects();
-        CreatePlateforms();
+        CreatePlateform();
         CreateEnemy();
     }
 
@@ -54,11 +57,13 @@ public class GameManagerScript : MonoBehaviour
         {
             if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
             {
-                platformFactory.CreatePlateform(new Vector2(UnityEngine.Random.Range(-3.7f, 3.7f), i));
+                platformFactory.CreatePlateform(new Vector2(UnityEngine.Random.Range(-bound, bound), i));
             }
         }
     }
-    private void CreatePlateforms()
+
+
+    private void CreatePlateform()
     {
         var highest = controller.GetHighest();
         
@@ -69,13 +74,19 @@ public class GameManagerScript : MonoBehaviour
         if (doodleHt > lastGeneratedPlateformPoint)
         {
           
-            if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
+            /*if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
             {
 
                 var x = UnityEngine.Random.Range(-3.7f, 3.7f);
                 platformFactory.CreatePlateform(new Vector2(x, doodleHt + ahead));
                 
-            }
+            }*/
+            
+
+            var x = UnityEngine.Random.Range(-bound, bound);
+            platformFactory.CreatePlateform(new Vector2(x, doodleHt + ahead));
+           
+            //Debug.Log("created at dd height : " + doodleHt + ", at height : " + doodleHt + ahead);
 
             lastGeneratedPlateformPoint = doodleHt;
                  
@@ -94,12 +105,9 @@ public class GameManagerScript : MonoBehaviour
         if (doodleHt > lastGeneratedEnemyPoint + dist_between_enemies)
         {
 
-            var creat = UnityEngine.Random.Range(0f, 1f) >= 0.1f;
-
-            if (creat)
+            if (UnityEngine.Random.Range(0f, 1f) >= 0.9f)
             {
-                var x = UnityEngine.Random.Range(-3.7f, 3.7f);
-                enemyFactory.CreateEnemy(new Vector2(x, doodleHt + ahead));
+                enemyFactory.CreateEnemy(new Vector2(UnityEngine.Random.Range(-bound, bound), doodleHt + ahead));
             }
 
             lastGeneratedEnemyPoint = doodleHt;
