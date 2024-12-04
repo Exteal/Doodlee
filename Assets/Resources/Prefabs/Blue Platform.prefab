@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5587985102281907504}
   - component: {fileID: -4830534605145126661}
   - component: {fileID: 6935633322956758123}
-  - component: {fileID: -4693143547747963708}
   - component: {fileID: 6746676285212803830}
   - component: {fileID: 8408791245910114566}
   - component: {fileID: 8129936079533880745}
   - component: {fileID: 7841648388029519373}
+  - component: {fileID: -8215704993159985353}
   m_Layer: 0
   m_Name: Blue Platform
   m_TagString: blue_platform
@@ -163,18 +163,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4693143547747963708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7622067719395500536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 213b10a354540454d843edfcac13afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &6746676285212803830
 AudioSource:
   m_ObjectHideFlags: 0
@@ -309,3 +297,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4568352760438544871, guid: 7a125e6192d4992468f0933585d4c596, type: 3}
+--- !u!114 &-8215704993159985353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622067719395500536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 213b10a354540454d843edfcac13afba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1

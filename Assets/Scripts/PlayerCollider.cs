@@ -108,10 +108,20 @@ public class PlayerCollider : MonoBehaviour
 
             if (collision.CompareTag("enemy"))
             {
-                endingsManager.FreeFall();
-                var player = collision.GetComponent<AudioSource>();
-                player.clip = bonkSound;
-                player.Play();
+                if(DoodleIsOnTop(collision))
+                {
+                    Destroy(collision);
+                    DoodleJump(2);
+                } 
+
+                else
+                {
+                    endingsManager.FreeFall();
+                    var player = collision.GetComponent<AudioSource>();
+                    player.clip = bonkSound;
+                    player.Play();
+                }
+                
             }
         }
             

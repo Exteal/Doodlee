@@ -8,7 +8,6 @@ public class Spring : Bonus
 {
 
     public Spring() {
-        modifier = 1.5f;
         isOneShot = false;
         topUseOnly = true;
     }

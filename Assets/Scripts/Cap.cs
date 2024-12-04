@@ -7,7 +7,6 @@ public class Cap : Bonus
     
     public Cap() 
     {
-        modifier = 4f;
         isOneShot = true;
         topUseOnly = false;
     }

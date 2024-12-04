@@ -17,11 +17,15 @@ public class PlatformFactory : MonoBehaviour
     public GameObject brownPrefab;
    
     public GameObject plateforms;
-
-
+    
+    public float platformHeightNoise;
+    
     void Start()
     {
-        ahead = 12;
+        ahead = 25;
+
+        platformHeightNoise = 0.5f;
+        
     }
 
     private GameObject SolidOnlyGeneration()
