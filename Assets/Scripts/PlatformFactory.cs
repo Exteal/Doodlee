@@ -19,12 +19,9 @@ public class PlatformFactory : MonoBehaviour
     public GameObject plateforms;
     
     public float platformHeightNoise;
-    
-    //TODO : passer 1 factory bonus par plateform à une globale
     void Start()
     {
         ahead = 25;
-
         platformHeightNoise = 0.5f;
         
     }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Cap : Bonus
 {
-    
-    //TODO: puissance de sauts incohérentes
     public Cap() 
     {
         isOneShot = true;
@@ -18,7 +16,7 @@ public class Cap : Bonus
 
     public override bool HasEquipAnimation()
     {
-        return true ;
+        return true;
     }
 
 }

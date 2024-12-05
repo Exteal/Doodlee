@@ -26,7 +26,7 @@ public class GameManagerScript : MonoBehaviour
     private int platformSeparation = 2;
 
 
-
+    //TODO : generation platform
     void Start()
     {
 
@@ -65,38 +65,29 @@ public class GameManagerScript : MonoBehaviour
 
         var doodleHeight = (int)Math.Floor(doodle.transform.position.y * 2) / 2;
 
+        
+        
         var noise = UnityEngine.Random.Range(-platformFactory.platformHeightNoise, platformFactory.platformHeightNoise);
         var nextHeight = (int)Math.Floor((lastGeneratedPlateformHeight + platformSeparation + noise) * 2) / 2;
-
-
-        var multiple = UnityEngine.Random.Range(0f, 1f);
+        var platformPosition = new Vector2(UnityEngine.Random.Range(-bound, bound), nextHeight);
 
 
         if (doodleHeight > lastGeneratedDoodleHeight)
         {
 
-            /*if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
-            {
-
-                var x = UnityEngine.Random.Range(-3.7f, 3.7f);
-                platformFactory.CreatePlateform(new Vector2(x, doodleHt + ahead));
-                
-            }*/
-
-            
-
-            Debug.Log("Before create --------------------------------");
+           /* Debug.Log("Before create --------------------------------");
             Debug.Log("lastPlateformHeight : " + lastGeneratedPlateformHeight);
             Debug.Log("Calcul : last " + lastGeneratedPlateformHeight + " sep " + platformSeparation + " noise " + noise);
             Debug.Log("nextHeight : " + nextHeight);
+           */
 
-            if (multiple > 0.9f)
+            if (UnityEngine.Random.Range(0f, 1f) > 0.9f)
             {
-                generateManyPlatforms(new Vector2(UnityEngine.Random.Range(-bound, bound), nextHeight), UnityEngine.Random.Range(0.3f, 0.8f));
+                generateManyPlatforms(platformPosition, UnityEngine.Random.Range(0.3f, 0.8f));
             }
             else
             {
-                platformFactory.CreatePlateform(new Vector2(UnityEngine.Random.Range(-bound, bound), nextHeight));
+                platformFactory.CreatePlateform(platformPosition);
             }
             
             lastGeneratedPlateformHeight = nextHeight;

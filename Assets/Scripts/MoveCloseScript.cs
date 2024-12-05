@@ -9,7 +9,7 @@ public class MoveCloseScript : MonoBehaviour
     private Rigidbody2D body;
     private int direction = 1;
     private float bound = 1f;
-    private float xpos;
+    private float center;
     private SpriteRenderer spriteRenderer;
 
     public int speed;
@@ -17,13 +17,13 @@ public class MoveCloseScript : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        xpos = transform.position.x;
+        center = transform.position.x;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
         body.transform.Translate(new Vector2(direction, 0) * speed * Time.deltaTime);
-        if (Mathf.Abs(xpos - body.transform.position.x) >= bound)
+        if (Mathf.Abs(body.transform.position.x - center) >= bound)
         {
             direction = -direction;
             spriteRenderer.flipX = !spriteRenderer.flipX;

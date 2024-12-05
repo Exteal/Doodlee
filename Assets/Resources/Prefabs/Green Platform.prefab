@@ -14,8 +14,6 @@ GameObject:
   - component: {fileID: 3461136699067545607}
   - component: {fileID: 6198012352398598690}
   - component: {fileID: 6575142216262330242}
-  - component: {fileID: 9120018119596112640}
-  - component: {fileID: 7053116525253395398}
   m_Layer: 0
   m_Name: Green Platform
   m_TagString: green_platform
@@ -270,29 +268,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6c10806d963704aa0713ca1746c049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9120018119596112640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6031141047057330751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d321aeb8042512499d913082101769a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 4568352760438544871, guid: 7a125e6192d4992468f0933585d4c596, type: 3}
---- !u!114 &7053116525253395398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6031141047057330751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9421bdc97c9fdc42b96fb9f5dce9bb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 8371027561978949542, guid: f1c80b19ac198d043bc81fc377b1c01c, type: 3}

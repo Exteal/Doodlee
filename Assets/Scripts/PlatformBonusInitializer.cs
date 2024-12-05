@@ -11,11 +11,11 @@ public class PlatformBonusInitializer : MonoBehaviour
     void Start()
     {
 
-        springFactory = GetComponent<SpringFactory>();
-        capFactory = GetComponent<CapFactory>();
-
-        var startup = GameObject.Find("GameManager"); //gameManager.GetComponent<GameManager>();    
+        var startup = GameObject.Find("GameManager");
         var manager = startup.GetComponent<GameManagerScript>();
+
+        springFactory = startup.GetComponent<SpringFactory>();
+        capFactory = startup.GetComponent<CapFactory>();
 
 
         if (manager != null && hasBonus())
@@ -29,23 +29,23 @@ public class PlatformBonusInitializer : MonoBehaviour
     }
     public bool hasBonus()
     {
-        return UnityEngine.Random.Range(0, 101) < 10;
+        return UnityEngine.Random.Range(0f, 1f) >= 0.9f;
     }
 
     public GameObject selectBonus()
     {
-        var rd = UnityEngine.Random.Range(0, 101);
+        var rd = UnityEngine.Random.Range(0f, 1f);
 
         BonusFactory factory = null;
 
         switch(rd)
         {
-            case var _ when rd <= 50:
+            case var _ when rd >= 0.5f:
 
                 factory = springFactory;
                 break;
 
-            case var _ when rd <= 100:
+            case var _ when rd <= 0.5f:
                 factory = capFactory;
                 break;
             

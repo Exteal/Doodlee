@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCollider : MonoBehaviour
 {
-    private int jumpForce;    
+    private int jumpForce = 8;    
     private Rigidbody2D doodle;
     private Animator animator;
     private Animator equipAnimator;
@@ -16,7 +13,6 @@ public class PlayerCollider : MonoBehaviour
     void Start()
     {
         doodle  = GetComponent<Rigidbody2D>();
-        jumpForce = 8;
         animator = transform.Find("Body").GetComponent<Animator>();
         equipAnimator = transform.Find("Equip").GetComponent <Animator>();
         endingsManager = gameManager.GetComponent<EndingsManager>();
@@ -32,99 +28,112 @@ public class PlayerCollider : MonoBehaviour
                 return;
             }
 
-            if(collision.CompareTag("green_platform") || collision.CompareTag("blue_platform"))
+            switch(collision.tag)
             {
-                
-                if(DoodleIsOnTop(collision))
-                {
-                    DoodleJump();
-                    collision.gameObject.GetComponent<AudioSource>().Play();
-                }
-                
-            }
-
-            if(collision.CompareTag("brown_platform") && DoodleIsOnTop(collision))
-            {
-                collision.gameObject.SendMessage("Break");        
-            }
-
-            if (collision.CompareTag("bonus"))
-            {
-
-                Bonus bonus = collision.gameObject.GetComponent<Bonus>();
-
-                if (bonus == null)
-                {
-                    return;
-                }
-
-                if ( collision.GetComponent<Bonus>().topUseOnly && !DoodleIsOnTop(collision)) {
-                    return;
-                }
-
-                
-                Animator animator = collision.gameObject.GetComponent<Animator>();
-                AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
-
-                
-
-                if (bonus.HasEquipAnimation())
-                {
-                    equipAnimator.runtimeAnimatorController = bonus.EquipAnimation();                   
-                }
-
-                if (animator != null)
-                {
-                    animator.Play("Jumped");
-                }
-
-                if (audioSource != null)
-                {
-                    if(bonus.isOneShot)
-                    {
-                        AudioSource.PlayClipAtPoint(audioSource.clip, audioSource.transform.position);
-                    }
-                    else
-                    {
-                        audioSource.Play();
-                    }
+                case "green_platform":
                     
-                }
+                case "blue_platform":
+                    if (DoodleIsOnTop(collision) && DoodleIsFalling())
+                    {
+                        DoodleJump();
+                        collision.gameObject.GetComponent<AudioSource>().Play();
+                    }
+                    break;
 
+                case "brown_platform":
+                    if (DoodleIsOnTop(collision) && DoodleIsFalling())
+                    {
+                        collision.gameObject.SendMessage("Break");
+                    }
+                    break;
 
-                if (bonus.isOneShot)
-                {
-                    Destroy(bonus.gameObject);
-                }
-                    
-                DoodleJump(modifier: bonus.ComputeJumpPower());
-                                      
-            }
-           
-            if (collision.CompareTag("black_hole"))
-            {
-                endingsManager.FreeFall();
-            }
+                case "bonus":
+                    collideBonus(collision);
+                    break;
 
-            if (collision.CompareTag("enemy"))
-            {
-                if(DoodleIsOnTop(collision))
-                {
-                    Destroy(collision);
-                    DoodleJump(2);
-                } 
-
-                else
-                {
+                case "black_hole":
                     endingsManager.FreeFall();
-                    var player = collision.GetComponent<AudioSource>();
-                    player.clip = bonkSound;
-                    player.Play();
-                }
-                
+                    break;
+
+                case "enemy":
+                    collideEnemy(collision);
+                    break;
+
+                default:
+                    break;
+
             }
+        }      
+    }
+
+
+    private void collideBonus(Collider2D collision)
+    {
+        Bonus bonus = collision.gameObject.GetComponent<Bonus>();
+
+        if (bonus == null)
+        {
+            return;
         }
-            
+
+        if (collision.GetComponent<Bonus>().topUseOnly && !DoodleIsOnTop(collision))
+        {
+            return;
+        }
+
+
+        Animator animator = collision.gameObject.GetComponent<Animator>();
+        AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
+
+
+
+        if (bonus.HasEquipAnimation())
+        {
+            equipAnimator.runtimeAnimatorController = bonus.EquipAnimation();
+        }
+
+        if (animator != null)
+        {
+            animator.Play("Jumped");
+        }
+
+        if (audioSource != null)
+        {
+            if (bonus.isOneShot)
+            {
+                AudioSource.PlayClipAtPoint(audioSource.clip, audioSource.transform.position);
+            }
+            else
+            {
+                audioSource.Play();
+            }
+
+        }
+
+
+        if (bonus.isOneShot)
+        {
+            Destroy(bonus.gameObject);
+        }
+
+        DoodleJump(modifier: bonus.ComputeJumpPower());
+    }
+
+    private void collideEnemy(Collider2D collision)
+    {
+        if (DoodleIsOnTop(collision))
+        {
+            Destroy(collision);
+            DoodleJump(2);
+        }
+
+        else
+        {
+            endingsManager.FreeFall();
+            var player = collision.GetComponent<AudioSource>();
+            player.clip = bonkSound;
+            player.Play();
+        }
     }
 
     private bool DoodleIsUnder(Collider2D other)
@@ -135,6 +144,11 @@ public class PlayerCollider : MonoBehaviour
     private bool DoodleIsOnTop(Collider2D other)
     {
         return doodle.transform.position.y > other.transform.position.y;
+    }
+
+    private bool DoodleIsFalling()
+    {
+        return doodle.velocity.y < 0;
     }
 
     private void DoodleJump(float modifier = 1)
