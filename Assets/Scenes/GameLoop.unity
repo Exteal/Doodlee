@@ -1310,7 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da792c2628568d84c8f5d63445467a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ahead: 10
+  ahead: 25
   interst: 0.5
   greenPrefab: {fileID: 6031141047057330751, guid: 971b23b9d3e50d448824efc20629b887, type: 3}
   bluePrefab: {fileID: 7622067719395500536, guid: 9758f3526d429b741b9ca2904c72f670, type: 3}

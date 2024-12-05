@@ -1,4 +1,6 @@
 using System;
+using System.Net.Http.Headers;
+using System.Threading;
 using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
@@ -17,13 +19,13 @@ public class GameManagerScript : MonoBehaviour
 
     private float lastGeneratedDoodleHeight;
     
-    private float lastGeneratedPlateformHeight;
+    //private float lastGeneratedPlateformHeight;
 
     private float lastGeneratedEnemyHeight;
 
     private float bound = 2.6f;
 
-    private int platformSeparation = 2;
+    private float platformSeparation = 1.3f;
 
 
     //TODO : generation platform
@@ -36,10 +38,10 @@ public class GameManagerScript : MonoBehaviour
 
         lastGeneratedDoodleHeight = doodle.transform.position.y;
         lastGeneratedEnemyHeight = doodle.transform.position.y;
-        
-        CreateInitPlateforms();
 
-    }    
+        CreateInitPlateforms();
+        
+    }
     private void Update()
     {
         MoveObjects();
@@ -59,14 +61,16 @@ public class GameManagerScript : MonoBehaviour
     private void CreatePlateform()
     {
         
-        var highest = controller.GetHighest();
+        //var highest = controller.GetHighest();
         var ahead = platformFactory.ahead;
         
 
         var doodleHeight = (int)Math.Floor(doodle.transform.position.y * 2) / 2;
 
-        
-        
+
+        var lastGeneratedPlateformHeight = doodleHeight + ahead;
+
+
         var noise = UnityEngine.Random.Range(-platformFactory.platformHeightNoise, platformFactory.platformHeightNoise);
         var nextHeight = (int)Math.Floor((lastGeneratedPlateformHeight + platformSeparation + noise) * 2) / 2;
         var platformPosition = new Vector2(UnityEngine.Random.Range(-bound, bound), nextHeight);
@@ -75,11 +79,11 @@ public class GameManagerScript : MonoBehaviour
         if (doodleHeight > lastGeneratedDoodleHeight)
         {
 
-           /* Debug.Log("Before create --------------------------------");
-            Debug.Log("lastPlateformHeight : " + lastGeneratedPlateformHeight);
+          /*  Debug.Log("Before create --------------------------------");
+            Debug.Log("lastPlateformHeight : " + lastGeneratedPlateformHeight + " : ddh = " + doodleHeight + " , ahad = " + ahead);
             Debug.Log("Calcul : last " + lastGeneratedPlateformHeight + " sep " + platformSeparation + " noise " + noise);
-            Debug.Log("nextHeight : " + nextHeight);
-           */
+            Debug.Log("nextHeight : " + nextHeight);*/
+           
 
             if (UnityEngine.Random.Range(0f, 1f) > 0.9f)
             {
@@ -90,7 +94,7 @@ public class GameManagerScript : MonoBehaviour
                 platformFactory.CreatePlateform(platformPosition);
             }
             
-            lastGeneratedPlateformHeight = nextHeight;
+            //lastGeneratedPlateformHeight = nextHeight;
             lastGeneratedDoodleHeight = doodleHeight;
 
         }
@@ -103,9 +107,9 @@ public class GameManagerScript : MonoBehaviour
 
         var doodleHt = (int)Math.Floor(doodle.transform.position.y * 2) / 2;
 
-        var dist_between_enemies = 10;
+        var min_dist_between_enemies = 20;
 
-        if (doodleHt > lastGeneratedEnemyHeight + dist_between_enemies)
+        if (doodleHt > lastGeneratedEnemyHeight + min_dist_between_enemies)
         {
 
             if (UnityEngine.Random.Range(0f, 1f) >= 0.1f)
@@ -122,16 +126,27 @@ public class GameManagerScript : MonoBehaviour
 
     private void generateManyPlatforms(Vector2 startingPosition, float density)
     {
-         
+
+      /*  Debug.Log("Before create");
+        Debug.Log("limit : " + platformFactory.ahead);
+        Debug.Log("init  : " + startingPosition.y);
+      */
+
+
         for (float i = (float)Math.Floor(startingPosition.y); i <= platformFactory.ahead; i = i + platformFactory.interst)
         {
+
+            /*Debug.Log("create --------------------------------");
+            Debug.Log("Calcul : i " + i);*/
+           
             if (UnityEngine.Random.Range(0f, 1f) >= density)
             {
                 platformFactory.CreatePlateform(new Vector2(UnityEngine.Random.Range(-bound, bound), i));
-                lastGeneratedPlateformHeight = i;
+                //lastGeneratedPlateformHeight = i;
             }
         }
     }
+
     private void MoveObjects()
     {
         var difference = cam.transform.InverseTransformPoint(doodle.transform.position).y;

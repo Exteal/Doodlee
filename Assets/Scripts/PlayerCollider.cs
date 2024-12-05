@@ -123,7 +123,7 @@ public class PlayerCollider : MonoBehaviour
     {
         if (DoodleIsOnTop(collision))
         {
-            Destroy(collision);
+            Destroy(collision.gameObject);
             DoodleJump(2);
         }
 

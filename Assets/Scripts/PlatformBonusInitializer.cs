@@ -29,7 +29,7 @@ public class PlatformBonusInitializer : MonoBehaviour
     }
     public bool hasBonus()
     {
-        return UnityEngine.Random.Range(0f, 1f) >= 0.9f;
+        return UnityEngine.Random.Range(0f, 1f) >= 0.95f;
     }
 
     public GameObject selectBonus()

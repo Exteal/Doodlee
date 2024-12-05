@@ -7,6 +7,10 @@ public enum PlateformGenerator
     GreenOnly
 }
 
+
+//TODO : Fall doodle switch screen
+//PlateformGenerator gen
+
 public class PlatformFactory : MonoBehaviour
 {
     public int ahead;
@@ -21,7 +25,6 @@ public class PlatformFactory : MonoBehaviour
     public float platformHeightNoise;
     void Start()
     {
-        ahead = 25;
         platformHeightNoise = 0.5f;
         
     }
