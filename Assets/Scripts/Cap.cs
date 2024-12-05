@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cap : Bonus
 {
     
+    //TODO: puissance de sauts incohérentes
     public Cap() 
     {
         isOneShot = true;

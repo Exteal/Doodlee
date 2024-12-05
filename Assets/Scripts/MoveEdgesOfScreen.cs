@@ -28,6 +28,8 @@ public class MoveEdgesOfScreen : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
+
+    //TODO: bounce dépassent limite
     void Update()
     {
         body.transform.Translate(new Vector2(direction, 0) * speed * Time.deltaTime);
